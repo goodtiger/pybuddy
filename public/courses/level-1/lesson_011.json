@@ -1,0 +1,25 @@
+{
+  "id": "lesson_011",
+  "level": 1,
+  "number": 11,
+  "title": "循环入门",
+  "phase": "block",
+  "objectives": ["认识 for 循环", "用更少代码做重复的事"],
+  "story": "🔁 小海龟发现重复命令太累了，循环像一台小复印机，可以帮它重复动作。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_forward", "turtle_right", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nfor i in range(6):\n    t.forward(70)\n    t.right(60)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个六边形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["range(6) 就是重复6次。", "六边形每次转60度。"],
+  "validation": {
+    "must_contain": ["for", "range"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

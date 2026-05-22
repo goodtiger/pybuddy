@@ -1,0 +1,25 @@
+{
+  "id": "lesson_002",
+  "level": 1,
+  "number": 2,
+  "title": "我的名字是...",
+  "phase": "block",
+  "objectives": ["学会用变量存名字", "用 print 输出变量的值"],
+  "story": "🐢 小海龟想知道你的名字！我们先存下来，再打印出来吧！",
+  "blocks": {
+    "available": ["print", "variable"],
+    "locked": []
+  },
+  "expected_code": "name = '小明'\nprint('我的名字是' + name)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "屏幕上显示：我的名字是XXX",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["把'小明'换成你的名字！", "变量就像一个装东西的盒子 📦"],
+  "validation": {
+    "must_contain": ["print"],
+    "run_test": true,
+    "visual_check": "text_output"
+  }
+}

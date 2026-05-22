@@ -1,0 +1,25 @@
+{
+  "id": "lesson_015",
+  "level": 1,
+  "number": 15,
+  "title": "自由创作",
+  "phase": "block",
+  "objectives": ["综合使用颜色、前进、转弯和循环", "完成第一幅Python作品"],
+  "story": "🏆 你已经学会很多小海龟魔法了！现在创作一幅属于你的图案吧。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color", "turtle_forward", "turtle_backward", "turtle_right", "turtle_left", "turtle_circle", "turtle_pen_up", "turtle_pen_down", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('green')\nfor i in range(4):\n    t.forward(120)\n    t.right(90)\nt.color('orange')\nt.circle(60)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现孩子自由组合的作品",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["可以先画正方形，再画一个圆。", "自由创作没有唯一答案，能运行就是很棒的作品。"],
+  "validation": {
+    "must_contain": ["import turtle"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

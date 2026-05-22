@@ -1,0 +1,25 @@
+{
+  "id": "lesson_004",
+  "level": 1,
+  "number": 4,
+  "title": "认识小海龟",
+  "phase": "block",
+  "objectives": ["学会 import turtle", "创建一个小海龟对象"],
+  "story": "🐢 今天我们正式认识小海龟！它有一个神奇的能力——在画布上画画！",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color"],
+    "locked": ["turtle_forward", "turtle_right"]
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('red')",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一只红色小海龟",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["试试把颜色改成'blue'或'green'！", "import就像从工具箱里拿出turtle工具 🧰"],
+  "validation": {
+    "must_contain": ["import turtle"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

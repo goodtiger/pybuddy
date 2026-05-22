@@ -1,0 +1,25 @@
+{
+  "id": "lesson_005",
+  "level": 1,
+  "number": 5,
+  "title": "小海龟向前走",
+  "phase": "block",
+  "objectives": ["使用 turtle.forward() 让海龟移动", "观察海龟画出一条线"],
+  "story": "🐢 小海龟准备在沙滩上散步了！你告诉它走多远，它就会留下脚印！",
+  "blocks": {
+    "available": ["turtle_import", "turtle_forward", "turtle_right"],
+    "locked": ["turtle_left", "turtle_pen_up"]
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.forward(100)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "海龟向右画出一条100像素的线",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["试试把100改成200，看看海龟走多远！", "加一个t.right(90)让它转弯 🔄"],
+  "validation": {
+    "must_contain": ["import turtle", "forward"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

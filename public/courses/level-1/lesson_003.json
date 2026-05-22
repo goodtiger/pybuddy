@@ -1,0 +1,25 @@
+{
+  "id": "lesson_003",
+  "level": 1,
+  "number": 3,
+  "title": "数字魔法",
+  "phase": "block",
+  "objectives": ["学会用Python做数学运算", "用 print 输出计算结果"],
+  "story": "🐢 小海龟是个数学小天才！我们来算一算 2+3 等于几？",
+  "blocks": {
+    "available": ["print", "math"],
+    "locked": []
+  },
+  "expected_code": "print(2 + 3)\nprint(10 - 4)\nprint(3 * 5)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "屏幕上显示计算结果：5, 6, 15",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["试试其他运算，比如 100 + 200！", "Python会帮你算，你只需要告诉它算什么 🔢"],
+  "validation": {
+    "must_contain": ["print"],
+    "run_test": true,
+    "visual_check": "text_output"
+  }
+}

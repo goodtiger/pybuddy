@@ -1,0 +1,25 @@
+{
+  "id": "lesson_007",
+  "level": 1,
+  "number": 7,
+  "title": "画正方形",
+  "phase": "block",
+  "objectives": ["认识重复动作", "用前进和右转画正方形"],
+  "story": "🏖️ 小海龟要在沙滩上盖一个方方的小城堡，四条边一样长。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_forward", "turtle_right", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nfor i in range(4):\n    t.forward(100)\n    t.right(90)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个正方形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["正方形有4条边，所以重复4次。", "每次右转90度，刚好能转回起点。"],
+  "validation": {
+    "must_contain": ["for", "range", "forward", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

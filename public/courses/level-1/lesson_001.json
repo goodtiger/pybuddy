@@ -1,0 +1,25 @@
+{
+  "id": "lesson_001",
+  "level": 1,
+  "number": 1,
+  "title": "你好，世界！",
+  "phase": "block",
+  "objectives": ["学会使用 print() 输出文字", "了解什么是代码"],
+  "story": "🐢 小海龟PyBuddy想跟你说'你好'！你能帮它打印出来吗？",
+  "blocks": {
+    "available": ["print"],
+    "locked": []
+  },
+  "expected_code": "print('你好，世界！')",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "屏幕上显示：你好，世界！",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["试试把'你好，世界！'改成你想说的话！", "别忘了用引号包住文字哦"],
+  "validation": {
+    "must_contain": ["print"],
+    "run_test": true,
+    "visual_check": "text_output"
+  }
+}

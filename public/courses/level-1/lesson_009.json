@@ -1,0 +1,25 @@
+{
+  "id": "lesson_009",
+  "level": 1,
+  "number": 9,
+  "title": "画三角形",
+  "phase": "block",
+  "objectives": ["用重复画三角形", "观察不同角度的效果"],
+  "story": "⛺ 小海龟想搭一个三角帐篷，三条边就能完成。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color", "turtle_forward", "turtle_left", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('green')\nfor i in range(3):\n    t.forward(120)\n    t.left(120)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个三角形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["三角形有3条边，所以重复3次。", "每次左转120度，可以围成一个三角形。"],
+  "validation": {
+    "must_contain": ["range(3)", "left"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

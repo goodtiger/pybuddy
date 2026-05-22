@@ -1,0 +1,34 @@
+{
+  "name": "PyBuddy 小海龟 Python",
+  "short_name": "PyBuddy",
+  "description": "儿童友好的 Python 积木学习应用",
+  "start_url": "/map",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#4a90e2",
+  "orientation": "any",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "继续学习",
+      "short_name": "学习",
+      "url": "/map",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "家长面板",
+      "short_name": "家长",
+      "url": "/parent",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ]
+}

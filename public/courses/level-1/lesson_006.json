@@ -1,0 +1,25 @@
+{
+  "id": "lesson_006",
+  "level": 1,
+  "number": 6,
+  "title": "转个弯",
+  "phase": "block",
+  "objectives": ["学会让小海龟右转", "组合前进和转弯"],
+  "story": "🐢 小海龟走到路口啦！帮它先前进，再转一个直角。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_forward", "turtle_right"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.forward(100)\nt.right(90)\nt.forward(80)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "海龟画出一个转弯的路线",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["右转90度就像在路口向右拐。", "可以试试把第二次前进改成120步。"],
+  "validation": {
+    "must_contain": ["import turtle", "forward", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

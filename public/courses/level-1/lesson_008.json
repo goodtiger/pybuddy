@@ -1,0 +1,25 @@
+{
+  "id": "lesson_008",
+  "level": 1,
+  "number": 8,
+  "title": "彩色画笔",
+  "phase": "block",
+  "objectives": ["学会设置画笔颜色", "用颜色区分作品"],
+  "story": "🎨 小海龟找到一盒彩色蜡笔，先选一种你喜欢的颜色再开始画。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color", "turtle_forward", "turtle_right", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('blue')\nfor i in range(4):\n    t.forward(100)\n    t.right(90)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个彩色正方形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["颜色可以换成 red、green、purple。", "先设置颜色，再开始前进。"],
+  "validation": {
+    "must_contain": ["color", "forward"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

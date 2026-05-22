@@ -1,0 +1,25 @@
+{
+  "id": "lesson_010",
+  "level": 1,
+  "number": 10,
+  "title": "画五角星",
+  "phase": "block",
+  "objectives": ["用循环画星星", "理解角度会改变图案"],
+  "story": "⭐ 夜晚来了，小海龟想在天空里画一颗亮亮的星星。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color", "turtle_forward", "turtle_right", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('orange')\nfor i in range(5):\n    t.forward(150)\n    t.right(144)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一颗五角星",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["五角星重复5次。", "右转144度是画五角星的小秘诀。"],
+  "validation": {
+    "must_contain": ["range(5)", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

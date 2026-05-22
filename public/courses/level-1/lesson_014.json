@@ -1,0 +1,25 @@
+{
+  "id": "lesson_014",
+  "level": 1,
+  "number": 14,
+  "title": "画花朵",
+  "phase": "block",
+  "objectives": ["组合圆形和旋转", "创作重复图案"],
+  "story": "🌸 小海龟想送你一朵花，每片花瓣都是一个圆。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color", "turtle_circle", "turtle_right", "repeat_square"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('pink')\nfor i in range(8):\n    t.circle(50)\n    t.right(45)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一朵由圆组成的花",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["8片花瓣，每次右转45度。", "换一种颜色，花朵会变成新的样子。"],
+  "validation": {
+    "must_contain": ["circle", "range"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}

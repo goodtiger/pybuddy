@@ -1,0 +1,25 @@
+{
+  "id": "lesson_012",
+  "level": 1,
+  "number": 12,
+  "title": "循环画圆",
+  "phase": "block",
+  "objectives": ["使用 circle 画圆", "比较线条和圆形"],
+  "story": "🫧 小海龟想吹一个圆圆的泡泡，这次我们直接用画圆魔法。",
+  "blocks": {
+    "available": ["turtle_import", "turtle_color", "turtle_circle"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('purple')\nt.circle(80)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个紫色圆形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["circle里的数字是圆的大小。", "半径越大，泡泡越大。"],
+  "validation": {
+    "must_contain": ["circle"],
+    "run_test": true,
+    "visual_check": "turtle_canvas"
+  }
+}
