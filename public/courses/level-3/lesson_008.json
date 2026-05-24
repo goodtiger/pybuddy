@@ -1,0 +1,23 @@
+{
+  "id": "lesson_008",
+  "level": 3,
+  "number": 8,
+  "title": "宠物档案",
+  "phase": "block",
+  "objectives": ["修改字典里的值", "给字典增加新信息", "输出完整档案"],
+  "story": "宠物豆豆升级了。请给它的档案添加年龄和技能，让魔法岛认识这位新伙伴。",
+  "blocks": { "available": ["dict", "print"], "locked": [] },
+  "expected_code": "pet = {'name': '豆豆', 'kind': '猫'}\npet['age'] = 3\npet['skill'] = '隐身'\nprint('宠物名字：')\nprint(pet['name'])\nprint('宠物年龄：')\nprint(pet['age'])\nprint('宠物技能：')\nprint(pet['skill'])",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出宠物名字、年龄和技能",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["pet['age'] = 3 可以添加年龄。", "字典可以保存不同类型的信息。", "读取新信息时 key 要写对。"],
+  "validation": {
+    "must_contain": ["pet", "pet['age']", "pet['skill']", "print", "隐身"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["宠物名字", "宠物年龄", "宠物技能"]
+  }
+}

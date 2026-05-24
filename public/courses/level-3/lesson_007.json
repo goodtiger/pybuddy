@@ -1,0 +1,23 @@
+{
+  "id": "lesson_007",
+  "level": 3,
+  "number": 7,
+  "title": "字典入门",
+  "phase": "block",
+  "objectives": ["认识 dictionary 字典", "理解 key 和 value", "用 key 读取信息"],
+  "story": "魔法岛的每只宠物都有档案。字典就像一张信息卡，可以用名字、种类这样的 key 找到 value。",
+  "blocks": { "available": ["dict", "print"], "locked": [] },
+  "expected_code": "pet = {'name': '豆豆', 'kind': '猫'}\nprint(pet)\nprint(pet['name'])\nprint(pet['kind'])",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出宠物档案、名字和种类",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["字典使用大括号。", "'name' 是 key，'豆豆' 是 value。", "pet['name'] 可以读取名字。"],
+  "validation": {
+    "must_contain": ["pet", "{", "}", "'name'", "'kind'", "pet['name']", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["豆豆", "猫"]
+  }
+}

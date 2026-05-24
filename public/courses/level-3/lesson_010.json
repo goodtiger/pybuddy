@@ -1,0 +1,23 @@
+{
+  "id": "lesson_010",
+  "level": 3,
+  "number": 10,
+  "title": "自我介绍程序",
+  "phase": "hybrid",
+  "objectives": ["组合 input、字典和 f-string", "保存用户资料", "输出完整自我介绍"],
+  "story": "现在你要制作自己的魔法岛身份证。让程序询问名字和最喜欢的技能，再用字典保存，用 f-string 输出。",
+  "blocks": { "available": ["input", "dict", "fstring", "print"], "locked": [] },
+  "expected_code": "name = input('你的名字是：')\nskill = input('你最喜欢的 Python 魔法是：')\nprofile = {'name': name, 'skill': skill}\nprint(f\"我是 {profile['name']}，我喜欢 {profile['skill']}！\")",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "根据输入生成一段自我介绍",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["可以把 input 的结果保存到变量。", "字典的 value 也可以来自变量。", "f-string 里可以放 profile['name']。"],
+  "validation": {
+    "must_contain": ["input", "profile", "'name'", "'skill'", "f\"", "profile['name']", "profile['skill']"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["我是"]
+  }
+}

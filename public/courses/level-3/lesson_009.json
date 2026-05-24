@@ -1,0 +1,23 @@
+{
+  "id": "lesson_009",
+  "level": 3,
+  "number": 9,
+  "title": "f-string 格式化",
+  "phase": "block",
+  "objectives": ["认识 f-string", "把变量放进句子", "写出更清楚的输出"],
+  "story": "魔法广播站要播报每位学员的新技能。用 f-string 把名字和技能放进一句完整的话里。",
+  "blocks": { "available": ["fstring", "variable", "print"], "locked": [] },
+  "expected_code": "name = '小雨'\npower = '循环魔法'\nprint(f'{name} 学会了 {power}')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出：小雨 学会了 循环魔法",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["f-string 前面有一个 f。", "变量放在大括号里面。", "这样比用很多 + 拼接更容易读。"],
+  "validation": {
+    "must_contain": ["f'", "{name}", "{power}", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["小雨 学会了 循环魔法"]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "lesson_006",
+  "level": 3,
+  "number": 6,
+  "title": "名字小游戏",
+  "phase": "hybrid",
+  "objectives": ["用 input 获取名字", "用字符串方法整理名字", "输出个性化结果"],
+  "story": "魔法岛给每位小程序员发一张通行证。输入英文名字后，Python 会帮你生成大写徽章和小写代号。",
+  "blocks": { "available": ["input", "string", "print"], "locked": [] },
+  "expected_code": "name = input('请输入你的英文名字：')\nprint('你的魔法徽章是：')\nprint(name.upper())\nprint('你的秘密代号是：')\nprint(name.lower())",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "根据输入名字输出大写徽章和小写代号",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["先用 input() 得到名字。", "name.upper() 会显示大写。", "name.lower() 会显示小写。"],
+  "validation": {
+    "must_contain": ["input", "name", "upper()", "lower()", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["你的魔法徽章是", "你的秘密代号是"]
+  }
+}
