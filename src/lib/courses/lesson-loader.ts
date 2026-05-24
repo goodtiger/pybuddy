@@ -14,6 +14,10 @@ const LEVEL_META: Record<number, Pick<CourseLevel, 'title' | 'description'>> = {
     title: '判断小游戏岛',
     description: '学习 if/else、比较、随机、列表和函数，把 Python 变成会做决定的小助手。',
   },
+  3: {
+    title: 'Python 魔法岛',
+    description: '学习 while 循环、input、字符串方法、字典和 f-string，完成更像真实程序的小游戏与创作项目。',
+  },
 };
 
 function getLevelDirectory(level: number) {

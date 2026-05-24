@@ -187,7 +187,7 @@ export default function MapPage() {
           </div>
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2">
-          {[1, 2].map((level) => (
+          {[1, 2, 3].map((level) => (
             <button
               key={level}
               onClick={() => router.push(`/map?level=${level}`)}

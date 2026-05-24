@@ -47,6 +47,8 @@ export class SkulptRunner {
         }
         return Sk.builtinFiles['files'][x];
       },
+      inputfun: (prompt: string) => window.prompt(prompt) ?? '',
+      inputfunTakesPrompt: true,
       __future__: Sk.python3,
     });
 

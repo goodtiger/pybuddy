@@ -1,10 +1,12 @@
 export const LEVEL_LESSON_COUNTS: Record<number, number> = {
   1: 15,
   2: 12,
+  3: 15,
 };
 
 export const LEVEL_1_LESSON_COUNT = LEVEL_LESSON_COUNTS[1];
 export const LEVEL_2_LESSON_COUNT = LEVEL_LESSON_COUNTS[2];
+export const LEVEL_3_LESSON_COUNT = LEVEL_LESSON_COUNTS[3];
 export const TOTAL_LESSON_COUNT = Object.values(LEVEL_LESSON_COUNTS).reduce((total, count) => total + count, 0);
 
 export function getLessonCountForLevel(level: number) {
