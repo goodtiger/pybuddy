@@ -231,7 +231,39 @@ npm run verify:courses
 
 ## 部署
 
-这是标准 Next.js 应用，可以部署到 Vercel 或任何支持 Node.js 的平台。
+这是标准 Next.js 应用，可以部署到 Vercel、Docker 或任何支持 Node.js 的平台。
+
+### Docker 部署
+
+项目内置多阶段 Dockerfile，生产镜像仅 35MB。
+
+```bash
+# 构建镜像
+docker build -t pybuddy .
+
+# 运行容器（需要 .env.local 文件）
+docker run -d -p 3000:3000 --env-file .env.local --name pybuddy pybuddy
+
+# 或使用 docker-compose
+docker compose up -d
+```
+
+使用 docker-compose（推荐）：
+
+```yaml
+# docker-compose.yml 已包含健康检查、资源限制和自动重启
+services:
+  pybuddy:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+```
+
+访问 `http://localhost:3000` 确认部署成功。
+
+### 传统部署
 
 生产构建：
 
