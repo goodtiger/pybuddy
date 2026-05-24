@@ -1,0 +1,24 @@
+{
+  "id": "lesson_015",
+  "level": 3,
+  "number": 15,
+  "title": "作品创作 2",
+  "phase": "code",
+  "objectives": ["完成 Level 3 终章项目", "综合使用 input、字典、f-string、循环和 turtle", "创作可运行的个性化程序"],
+  "story": "终章挑战来了。请制作一张属于自己的魔法岛毕业证：先询问名字和技能，打印证书，再画出毕业徽章。",
+  "blocks": { "available": ["input", "dict", "fstring", "while", "function", "turtle_import", "turtle_forward", "turtle_right", "turtle_color", "turtle_circle", "print"], "locked": [] },
+  "expected_code": "import turtle\nname = input('你的名字是：')\nskill = input('你最自豪的 Python 魔法是：')\nprofile = {'name': name, 'skill': skill}\nprint(f\"恭喜 {profile['name']} 完成 Python 魔法岛！\")\nprint(f\"最强技能：{profile['skill']}\")\nt = turtle.Turtle()\nt.color('purple')\ncount = 1\nwhile count <= 5:\n    t.forward(80)\n    t.right(144)\n    count = count + 1\nt.circle(50)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "输出个性化毕业证文字，并画出紫色毕业徽章",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["先用 input 收集资料。", "用字典保存 name 和 skill。", "用 while 画五角星，再画一个圆作为徽章。"],
+  "validation": {
+    "must_contain": ["input", "profile", "f\"", "while", "count = count + 1", "import turtle", "t.forward", "t.right", "t.circle"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_circles": 1 },
+    "output_contains": ["恭喜", "最强技能"]
+  }
+}

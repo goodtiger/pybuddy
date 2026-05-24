@@ -1,0 +1,23 @@
+{
+  "id": "lesson_014",
+  "level": 3,
+  "number": 14,
+  "title": "作品创作 1",
+  "phase": "code",
+  "objectives": ["综合使用循环、函数和 turtle", "创作自己的魔法徽章", "用清晰代码组织作品"],
+  "story": "你已经掌握了许多高级魔法。现在请设计一枚魔法徽章，用函数、循环和颜色完成第一件 Level 3 创作。",
+  "blocks": { "available": ["function", "turtle_import", "turtle_forward", "turtle_right", "turtle_color", "turtle_circle", "turtle_pen_up", "turtle_pen_down"], "locked": [] },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ndef draw_badge(color, size):\n    t.color(color)\n    for side in range(4):\n        t.forward(size)\n        t.right(90)\n    t.circle(size / 2)\ncolors = ['red', 'blue', 'green']\nfor color in colors:\n    draw_badge(color, 80)\n    t.right(120)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现由方形和圆组成的彩色魔法徽章",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["先写一个 draw_badge 函数。", "函数里可以画方形和圆。", "外层循环可以换颜色并旋转徽章。"],
+  "validation": {
+    "must_contain": ["def draw_badge", "colors", "for color in colors", "t.circle", "t.right", "draw_badge"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 2, "min_circles": 1, "min_repeats": 2 }
+  }
+}

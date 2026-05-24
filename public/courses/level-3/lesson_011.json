@@ -1,0 +1,23 @@
+{
+  "id": "lesson_011",
+  "level": 3,
+  "number": 11,
+  "title": "嵌套循环图案",
+  "phase": "code",
+  "objectives": ["认识嵌套循环", "用外层循环控制多个图形", "用内层循环画单个图形"],
+  "story": "魔法岛夜空要亮起三颗方形星星。外层循环决定画几颗星，内层循环决定每颗星的四条边。",
+  "blocks": { "available": ["turtle_import", "turtle_forward", "turtle_right", "turtle_pen_up", "turtle_pen_down", "turtle_color", "function"], "locked": [] },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('blue')\nfor star in range(3):\n    for side in range(4):\n        t.forward(60)\n        t.right(90)\n    t.penup()\n    t.forward(90)\n    t.pendown()",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现三颗蓝色方形星星",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["一个 for 放在另一个 for 里面，就是嵌套循环。", "内层循环负责画正方形。", "外层循环负责重复画三次。"],
+  "validation": {
+    "must_contain": ["for star in range", "for side in range", "t.forward", "t.right", "penup", "pendown"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 2, "min_turns": 1, "min_pen_changes": 2, "min_repeats": 2 }
+  }
+}

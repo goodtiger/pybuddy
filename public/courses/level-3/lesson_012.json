@@ -1,0 +1,23 @@
+{
+  "id": "lesson_012",
+  "level": 3,
+  "number": 12,
+  "title": "多函数组合",
+  "phase": "code",
+  "objectives": ["定义多个函数", "组合函数完成图案", "让程序结构更清楚"],
+  "story": "魔法岛工坊需要一个能画花朵的程序。先定义画方块，再定义画花，最后调用函数完成作品。",
+  "blocks": { "available": ["function", "turtle_import", "turtle_forward", "turtle_right", "turtle_color"], "locked": [] },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ndef draw_square(size):\n    for side in range(4):\n        t.forward(size)\n        t.right(90)\ndef draw_flower():\n    colors = ['red', 'orange', 'purple']\n    for color in colors:\n        t.color(color)\n        draw_square(70)\n        t.right(30)\ndraw_flower()",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现由多个彩色方块组成的花朵",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["函数可以调用另一个函数。", "draw_square 负责小动作，draw_flower 负责组合。", "颜色列表可以让花更丰富。"],
+  "validation": {
+    "must_contain": ["def draw_square", "def draw_flower", "colors", "for color in colors", "draw_square", "draw_flower()"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 2, "min_repeats": 2 }
+  }
+}

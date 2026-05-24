@@ -1,0 +1,22 @@
+{
+  "id": "lesson_013",
+  "level": 3,
+  "number": 13,
+  "title": "小游戏：石头剪刀布",
+  "phase": "code",
+  "objectives": ["制作文字小游戏", "组合 input、random、if/elif/else", "处理多种游戏结果"],
+  "story": "魔法岛竞技场开放了。请制作石头剪刀布小游戏，让玩家和 Python 对战。",
+  "blocks": { "available": ["input", "condition", "random", "list", "print"], "locked": [] },
+  "expected_code": "import random\nchoices = ['石头', '剪刀', '布']\nplayer = input('请输入石头、剪刀或布：')\ncomputer = random.choice(choices)\nprint('电脑出了：' + computer)\nif player == computer:\n    print('平局')\nelif player == '石头' and computer == '剪刀':\n    print('你赢了')\nelif player == '剪刀' and computer == '布':\n    print('你赢了')\nelif player == '布' and computer == '石头':\n    print('你赢了')\nelse:\n    print('电脑赢了')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "玩家输入后，程序输出电脑选择和胜负结果",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["choices 列表保存三个选项。", "random.choice 可以随机选一个。", "elif 可以检查更多情况。"],
+  "validation": {
+    "must_contain": ["import random", "choices", "input", "random.choice", "if", "elif", "else", "print"],
+    "run_test": true,
+    "visual_check": "text_output"
+  }
+}
