@@ -31,6 +31,14 @@ const definedBlocks = new Set([
   'turtle_pen_up',
   'turtle_pen_down',
   'turtle_circle',
+  'while_condition',
+  'string_input',
+  'string_upper',
+  'string_lower',
+  'dict_create',
+  'dict_get',
+  'dict_set',
+  'fstring_print',
 ]);
 
 const blockAliases = {
@@ -41,11 +49,23 @@ const blockAliases = {
   random: ['random_color_turtle'],
   list: ['color_list_print', 'list_loop_turtle'],
   function: ['define_square_function', 'call_square_function', 'function_pattern_project'],
+  while: ['while_condition'],
+  input: ['string_input'],
+  string: ['string_input', 'string_upper', 'string_lower'],
+  dict: ['dict_create', 'dict_get', 'dict_set'],
+  fstring: ['fstring_print'],
 };
 
 const codeRequirements = [
   { pattern: /print\(/, blocks: ['print_text', 'print_number', 'math_add_print', 'math_subtract_print', 'math_multiply_print', 'compare_score_print', 'if_else_print', 'color_list_print'] },
-  { pattern: /name\s*=/, blocks: ['variable_set_name'] },
+  { pattern: /name\s*=/, blocks: ['variable_set_name', 'string_input'] },
+  { pattern: /input\(/, blocks: ['string_input'] },
+  { pattern: /\.upper\(\)/, blocks: ['string_upper'] },
+  { pattern: /\.lower\(\)/, blocks: ['string_lower'] },
+  { pattern: /pet\s*=/, blocks: ['dict_create'] },
+  { pattern: /pet\['/, blocks: ['dict_get', 'dict_set'] },
+  { pattern: /f['"]/i, blocks: ['fstring_print'] },
+  { pattern: /while\b/, blocks: ['while_condition'] },
   { pattern: /\+ name/, blocks: ['variable_print_name'] },
   { pattern: /print\([^)\n]*\d+\s*\+\s*\d+/, blocks: ['math_add_print'] },
   { pattern: /print\([^)\n]*\d+\s*-\s*\d+/, blocks: ['math_subtract_print'] },
