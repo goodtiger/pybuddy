@@ -18,8 +18,9 @@
   },
   "hints": ["可以先画正方形，再画一个圆。", "自由创作没有唯一答案，能运行就是很棒的作品。"],
   "validation": {
-    "must_contain": ["import turtle"],
+    "must_contain": ["import turtle", "color", "for", "range", "forward", "right"],
     "run_test": true,
-    "visual_check": "turtle_canvas"
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 2, "min_movement": 1, "min_turns": 1, "min_circles": 1, "min_repeats": 1 }
   }
 }

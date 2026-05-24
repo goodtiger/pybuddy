@@ -1,0 +1,26 @@
+{
+  "id": "lesson_005",
+  "level": 2,
+  "number": 5,
+  "title": "彩色折线",
+  "phase": "block",
+  "objectives": ["用 for 遍历列表", "让每段线使用不同颜色"],
+  "story": "🌈 小海龟要按颜色清单画一条折线路径，每走一段就换一种颜色。",
+  "blocks": {
+    "available": ["list"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ncolors = ['red', 'blue', 'green', 'purple']\nfor color in colors:\n    t.color(color)\n    t.forward(70)\n    t.right(90)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现多段不同颜色的折线",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["for color in colors 会一个一个拿出颜色。", "把 color 放进 t.color(color)，小海龟就会换成当前颜色。"],
+  "validation": {
+    "must_contain": ["for", "in colors", "color", "forward", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
+  }
+}

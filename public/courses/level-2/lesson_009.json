@@ -1,0 +1,26 @@
+{
+  "id": "lesson_009",
+  "level": 2,
+  "number": 9,
+  "title": "颜色队伍",
+  "phase": "block",
+  "objectives": ["复习列表和循环", "用列表驱动画图"],
+  "story": "🚦 红蓝绿紫排成一队，小海龟按顺序用它们画出彩色拐弯路。",
+  "blocks": {
+    "available": ["list"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ncolors = ['red', 'blue', 'green', 'purple']\nfor color in colors:\n    t.color(color)\n    t.forward(80)\n    t.right(60)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现彩色转弯路径",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["换一个角度，路径形状就会不同。", "列表适合保存一组相似的数据。"],
+  "validation": {
+    "must_contain": ["colors", "for", "in colors", "color", "forward", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
+  }
+}

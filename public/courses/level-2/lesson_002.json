@@ -1,0 +1,26 @@
+{
+  "id": "lesson_002",
+  "level": 2,
+  "number": 2,
+  "title": "晴天还是雨天",
+  "phase": "block",
+  "objectives": ["使用 == 判断文字是否相同", "理解 if/else 的两条路线"],
+  "story": "🌦️ 小海龟出门前要看天气：晴天画太阳，其他天气画彩虹。",
+  "blocks": {
+    "available": ["condition"],
+    "locked": []
+  },
+  "expected_code": "天气 = '晴天'\nif 天气 == '晴天':\n    print('去画太阳')\nelse:\n    print('画彩虹')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出：去画太阳",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["== 是用来比较两边是否一样，不是给变量赋值。", "else 是条件不成立时走的路线。"],
+  "validation": {
+    "must_contain": ["if", "==", "else", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["去画太阳"]
+  }
+}

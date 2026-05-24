@@ -19,6 +19,41 @@ export function setupPythonGenerator() {
     const b = block.getFieldValue('B');
     return `print(${a} + ${b})\n`;
   };
+  pythonGenerator.forBlock['math_subtract_print'] = (block) => {
+    const a = block.getFieldValue('A');
+    const b = block.getFieldValue('B');
+    return `print(${a} - ${b})\n`;
+  };
+  pythonGenerator.forBlock['math_multiply_print'] = (block) => {
+    const a = block.getFieldValue('A');
+    const b = block.getFieldValue('B');
+    return `print(${a} * ${b})\n`;
+  };
+  pythonGenerator.forBlock['compare_score_print'] = (block) => {
+    const score = block.getFieldValue('SCORE');
+    const target = block.getFieldValue('TARGET');
+    return `score = ${score}\nif score >= ${target}:\n  print('通过')\nelse:\n  print('继续练习')\n`;
+  };
+  pythonGenerator.forBlock['if_else_print'] = (block) => {
+    const name = String(block.getFieldValue('NAME') || '天气').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const value = String(block.getFieldValue('VALUE') || '晴天').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const yes = String(block.getFieldValue('YES') || '去画太阳').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const no = String(block.getFieldValue('NO') || '画彩虹').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return `${name} = '${value}'\nif ${name} == '${value}':\n  print('${yes}')\nelse:\n  print('${no}')\n`;
+  };
+  pythonGenerator.forBlock['random_color_turtle'] = () =>
+    "import turtle\nimport random\nt = turtle.Turtle()\ncolors = ['red', 'blue', 'green', 'purple']\nchoice = random.choice(colors)\nt.color(choice)\nt.forward(120)\n";
+  pythonGenerator.forBlock['color_list_print'] = () =>
+    "colors = ['red', 'blue', 'green']\nprint(colors[0])\nprint(len(colors))\n";
+  pythonGenerator.forBlock['list_loop_turtle'] = () =>
+    "import turtle\nt = turtle.Turtle()\ncolors = ['red', 'blue', 'green', 'purple']\nfor color in colors:\n  t.color(color)\n  t.forward(70)\n  t.right(90)\n";
+  pythonGenerator.forBlock['define_square_function'] = (block) => {
+    const size = block.getFieldValue('SIZE');
+    return `def draw_square(size):\n  for i in range(4):\n    t.forward(size)\n    t.right(90)\nsize = ${size}\n`;
+  };
+  pythonGenerator.forBlock['call_square_function'] = () => 'draw_square(size)\n';
+  pythonGenerator.forBlock['function_pattern_project'] = () =>
+    "import turtle\nt = turtle.Turtle()\ndef draw_square(size):\n  for i in range(4):\n    t.forward(size)\n    t.right(90)\ncolors = ['red', 'blue', 'green']\nfor color in colors:\n  t.color(color)\n  draw_square(70)\n  t.penup()\n  t.forward(100)\n  t.pendown()\n";
   pythonGenerator.forBlock['repeat_square'] = (block, generator) => {
     const times = block.getFieldValue('TIMES');
     const branch = generator.statementToCode(block, 'DO') || '  pass\n';
@@ -28,6 +63,11 @@ export function setupPythonGenerator() {
   pythonGenerator.forBlock['turtle_forward'] = (block) => {
     const dist = block.getFieldValue('DISTANCE');
     return `t.forward(${dist})\n`;
+  };
+  pythonGenerator.forBlock['turtle_forward_grow'] = (block) => {
+    const start = block.getFieldValue('START');
+    const step = block.getFieldValue('STEP');
+    return `t.forward(${start} + i * ${step})\n`;
   };
   pythonGenerator.forBlock['turtle_backward'] = (block) => {
     const dist = block.getFieldValue('DISTANCE');

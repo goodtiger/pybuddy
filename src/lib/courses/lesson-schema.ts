@@ -18,7 +18,7 @@ export const LessonSchema = z.object({
   }),
   expected_code: z.string(),
   visual: z.object({
-    type: z.enum(['turtle_canvas', 'animation', 'game']),
+    type: z.enum(['text_output', 'turtle_canvas', 'animation', 'game']),
     expected_result: z.string().min(1),
     config: z.record(z.string(), z.unknown()).optional(),
   }),
@@ -28,6 +28,17 @@ export const LessonSchema = z.object({
     must_not_contain: z.array(z.string()).optional(),
     run_test: z.boolean(),
     visual_check: z.string().optional(),
+    turtle_actions: z.object({
+      imported: z.boolean().optional(),
+      created: z.boolean().optional(),
+      min_movement: z.number().int().nonnegative().optional(),
+      min_turns: z.number().int().nonnegative().optional(),
+      min_circles: z.number().int().nonnegative().optional(),
+      min_colors: z.number().int().nonnegative().optional(),
+      min_pen_changes: z.number().int().nonnegative().optional(),
+      min_repeats: z.number().int().nonnegative().optional(),
+    }).optional(),
+    output_contains: z.array(z.string()).optional(),
   }),
   debug_mode: z.object({
     has_bug: z.boolean(),

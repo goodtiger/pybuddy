@@ -7,7 +7,7 @@
   "objectives": ["用循环做旋转图案", "看到重复带来的变化"],
   "story": "🌀 沙滩上有一个漂亮的贝壳螺旋，小海龟想照着画出来。",
   "blocks": {
-    "available": ["turtle_import", "turtle_color", "turtle_forward", "turtle_right", "repeat_square"],
+    "available": ["turtle_import", "turtle_color", "turtle_forward_grow", "turtle_right", "repeat_square"],
     "locked": []
   },
   "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('blue')\nfor i in range(12):\n    t.forward(20 + i * 8)\n    t.right(45)",
@@ -16,10 +16,11 @@
     "expected_result": "画布上出现一个螺旋线",
     "config": { "canvas_size": [400, 300] }
   },
-  "hints": ["每次走得比上一次远一点，就会像螺旋。", "如果积木不够，可以看代码预览里的 i。"],
+  "hints": ["每次走得比上一次远一点，就会像螺旋。", "把“每圈多走”积木放进重复积木里，再加一个右转。"],
   "validation": {
     "must_contain": ["for", "forward", "right"],
     "run_test": true,
-    "visual_check": "turtle_canvas"
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
   }
 }

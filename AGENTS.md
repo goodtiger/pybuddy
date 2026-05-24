@@ -13,6 +13,8 @@ This is a Next.js 14 TypeScript app for a Python learning experience. App Router
 
 Use `npm install` to restore dependencies from `package-lock.json`.
 
+Do not run `npm run build` while `npm run dev` is still running. The shared `.next` output can become inconsistent and cause transient 500 errors such as missing `vendor-chunks/*.js`. Stop the dev server first; if the error has already happened, stop dev, remove `.next`, and restart/build from a clean generated output directory.
+
 ## Coding Style & Naming Conventions
 
 Use TypeScript with `strict` mode enabled. Prefer functional React components and hooks. Use the `@/` path alias for imports from `src`, for example `@/components/ui/button`. Follow existing filename patterns: PascalCase for React components (`LessonPage.tsx`), kebab-case for utility modules (`skulpt-runner.ts`), and descriptive JSON lesson files (`lesson_001.json`). Keep Tailwind classes readable and colocated with the component they style. ESLint extends `next/core-web-vitals`; `react-hooks/exhaustive-deps` is a warning and `no-explicit-any` is disabled, but prefer precise types where practical.

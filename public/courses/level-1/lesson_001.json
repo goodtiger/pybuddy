@@ -12,7 +12,7 @@
   },
   "expected_code": "print('你好，世界！')",
   "visual": {
-    "type": "turtle_canvas",
+    "type": "text_output",
     "expected_result": "屏幕上显示：你好，世界！",
     "config": { "canvas_size": [400, 300] }
   },

@@ -1,0 +1,27 @@
+{
+  "id": "lesson_011",
+  "level": 2,
+  "number": 11,
+  "title": "代码小侦探",
+  "phase": "block",
+  "objectives": ["复习条件判断", "观察输出是否符合条件"],
+  "story": "🕵️ 小海龟发现条件判断最容易把 = 和 == 搞混。我们用正确写法抓住这个 bug。",
+  "blocks": {
+    "available": ["condition"],
+    "locked": []
+  },
+  "expected_code": "badge = 'star'\nif badge == 'star':\n    print('获得星星徽章')\nelse:\n    print('继续收集')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出：获得星星徽章",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["判断是否相同要用 ==。", "如果输出走到了 else，说明条件没有成立。"],
+  "validation": {
+    "must_contain": ["if", "==", "else", "print"],
+    "must_not_contain": ["if badge ="],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["星星"]
+  }
+}

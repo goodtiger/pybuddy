@@ -1,41 +1,9 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { checkTutorInput, generateTutorReply } from '@/lib/ai-tutor/safety-filter';
-import type { Lesson } from '@/types/lesson';
+import { LessonSchema } from '@/lib/courses/lesson-schema';
 
 export const runtime = 'nodejs';
-
-const LessonSchema = z.object({
-  id: z.string(),
-  level: z.number(),
-  number: z.number(),
-  title: z.string(),
-  phase: z.enum(['block', 'hybrid', 'hint', 'code']),
-  objectives: z.array(z.string()),
-  story: z.string(),
-  blocks: z.object({
-    available: z.array(z.string()),
-    locked: z.array(z.string()).optional(),
-  }),
-  expected_code: z.string(),
-  visual: z.object({
-    type: z.enum(['turtle_canvas', 'animation', 'game']),
-    expected_result: z.string(),
-    config: z.record(z.string(), z.unknown()).optional(),
-  }),
-  hints: z.array(z.string()),
-  validation: z.object({
-    must_contain: z.array(z.string()),
-    must_not_contain: z.array(z.string()).optional(),
-    run_test: z.boolean(),
-    visual_check: z.string().optional(),
-  }),
-  debug_mode: z.object({
-    has_bug: z.boolean(),
-    bug_description: z.string().optional(),
-    hint: z.string().optional(),
-  }).optional(),
-}) satisfies z.ZodType<Lesson>;
 
 const TutorRequestSchema = z.object({
   message: z.string().min(1).max(240),

@@ -1,0 +1,26 @@
+{
+  "id": "lesson_006",
+  "level": 2,
+  "number": 6,
+  "title": "函数魔法盒",
+  "phase": "block",
+  "objectives": ["认识 def 定义函数", "把画正方形动作打包"],
+  "story": "🪄 小海龟不想每次都重写四条边，于是把画正方形打包成一个新魔法。",
+  "blocks": {
+    "available": ["turtle_import", "function"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ndef draw_square(size):\n    for i in range(4):\n        t.forward(size)\n        t.right(90)\nsize = 80\ndraw_square(size)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个由函数画出的正方形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["def draw_square(size): 是给新魔法起名字。", "调用 draw_square(size) 时，函数里的动作才会执行。"],
+  "validation": {
+    "must_contain": ["def", "draw_square", "for", "range", "forward", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
+  }
+}

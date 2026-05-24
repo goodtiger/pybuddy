@@ -39,7 +39,17 @@ export const useLessonStore = create<LessonState>()((set) => ({
   aiMessages: [],
   aiDailyQuota: 5,
   setCurrentLesson: (lesson) =>
-    set({ currentLesson: lesson, phase: lesson.phase, blockXml: '', pythonCode: lesson.expected_code || '', hints: lesson.hints, currentHintIndex: 0, hasError: false, lastResult: null }),
+    set({
+      currentLesson: lesson,
+      phase: lesson.phase,
+      blockXml: '',
+      pythonCode: '',
+      hints: lesson.hints,
+      currentHintIndex: 0,
+      hasError: false,
+      lastResult: null,
+      aiMessages: [],
+    }),
   setPhase: (phase) => set({ phase }),
   setBlocklyXml: (xml) => set({ blockXml: xml }),
   setPythonCode: (code) => set({ pythonCode: code }),
@@ -50,7 +60,7 @@ export const useLessonStore = create<LessonState>()((set) => ({
   decrementAiQuota: () => set((state) => ({ aiDailyQuota: Math.max(0, state.aiDailyQuota - 1) })),
   reset: () => set((state) => ({
     blockXml: '',
-    pythonCode: state.currentLesson?.expected_code || '',
+    pythonCode: '',
     hasError: false,
     lastResult: null,
     isRunning: false,

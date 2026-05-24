@@ -1,0 +1,26 @@
+{
+  "id": "lesson_003",
+  "level": 2,
+  "number": 3,
+  "title": "随机颜色线",
+  "phase": "block",
+  "objectives": ["认识 random.choice()", "从列表里随机选择颜色"],
+  "story": "🎲 小海龟想闭着眼睛抽一支彩笔，每次可能画出不同颜色的线。",
+  "blocks": {
+    "available": ["random"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nimport random\nt = turtle.Turtle()\ncolors = ['red', 'blue', 'green', 'purple']\nchoice = random.choice(colors)\nt.color(choice)\nt.forward(120)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一条随机颜色的线",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["random.choice(colors) 会从颜色清单里挑一个。", "随机结果每次可能不一样，这是正常的。"],
+  "validation": {
+    "must_contain": ["import random", "choice", "colors", "forward"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1 }
+  }
+}

@@ -18,8 +18,9 @@
   },
   "hints": ["range(6) 就是重复6次。", "六边形每次转60度。"],
   "validation": {
-    "must_contain": ["for", "range"],
+    "must_contain": ["for", "range", "forward", "right"],
     "run_test": true,
-    "visual_check": "turtle_canvas"
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
   }
 }

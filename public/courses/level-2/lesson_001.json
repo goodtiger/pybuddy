@@ -1,0 +1,26 @@
+{
+  "id": "lesson_001",
+  "level": 2,
+  "number": 1,
+  "title": "分数够不够？",
+  "phase": "block",
+  "objectives": ["认识 if 条件判断", "用 >= 比较分数"],
+  "story": "🎯 小海龟参加闯关赛，分数达到目标就能通过。帮它判断分数够不够吧！",
+  "blocks": {
+    "available": ["condition"],
+    "locked": []
+  },
+  "expected_code": "score = 8\nif score >= 6:\n    print('通过')\nelse:\n    print('继续练习')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出：通过",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["if 像一个小裁判，会先看条件是不是真的。", ">= 表示大于或等于。"],
+  "validation": {
+    "must_contain": ["if", ">=", "else", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["通过"]
+  }
+}

@@ -12,13 +12,13 @@
   },
   "expected_code": "name = '小明'\nprint('我的名字是' + name)",
   "visual": {
-    "type": "turtle_canvas",
+    "type": "text_output",
     "expected_result": "屏幕上显示：我的名字是XXX",
     "config": { "canvas_size": [400, 300] }
   },
   "hints": ["把'小明'换成你的名字！", "变量就像一个装东西的盒子 📦"],
   "validation": {
-    "must_contain": ["print"],
+    "must_contain": ["name =", "print", "+ name"],
     "run_test": true,
     "visual_check": "text_output"
   }

@@ -13,9 +13,20 @@ const ALL_BLOCKS = [
   { kind: 'block', type: 'variable_set_name' },
   { kind: 'block', type: 'variable_print_name' },
   { kind: 'block', type: 'math_add_print' },
+  { kind: 'block', type: 'math_subtract_print' },
+  { kind: 'block', type: 'math_multiply_print' },
+  { kind: 'block', type: 'compare_score_print' },
+  { kind: 'block', type: 'if_else_print' },
+  { kind: 'block', type: 'random_color_turtle' },
+  { kind: 'block', type: 'color_list_print' },
+  { kind: 'block', type: 'list_loop_turtle' },
+  { kind: 'block', type: 'define_square_function' },
+  { kind: 'block', type: 'call_square_function' },
+  { kind: 'block', type: 'function_pattern_project' },
   { kind: 'block', type: 'repeat_square' },
   { kind: 'block', type: 'turtle_import' },
   { kind: 'block', type: 'turtle_forward' },
+  { kind: 'block', type: 'turtle_forward_grow' },
   { kind: 'block', type: 'turtle_backward' },
   { kind: 'block', type: 'turtle_right' },
   { kind: 'block', type: 'turtle_left' },
@@ -28,7 +39,11 @@ const ALL_BLOCKS = [
 const BLOCK_ALIASES: Record<string, string[]> = {
   print: ['print_text', 'print_number'],
   variable: ['variable_set_name', 'variable_print_name'],
-  math: ['math_add_print'],
+  math: ['math_add_print', 'math_subtract_print', 'math_multiply_print'],
+  condition: ['compare_score_print', 'if_else_print'],
+  random: ['random_color_turtle'],
+  list: ['color_list_print', 'list_loop_turtle'],
+  function: ['define_square_function', 'call_square_function', 'function_pattern_project'],
 };
 
 export function BlockEditor({ onCodeChange, showPreview = true }: { onCodeChange?: (code: string) => void; showPreview?: boolean }) {
@@ -93,10 +108,10 @@ export function BlockEditor({ onCodeChange, showPreview = true }: { onCodeChange
         className="flex-1 rounded-kid-md overflow-hidden border-2 border-primary-container"
         style={{ minHeight: '300px' }}
       />
-      {showPreview && (pythonCode || currentLesson?.expected_code) && (
+      {showPreview && (
         <div className="bg-gray-900 text-green-400 font-code text-kid-sm p-3 rounded-kid-md overflow-auto max-h-32">
           <div className="text-gray-400 mb-1 text-xs">Python 代码预览：</div>
-          <pre className="whitespace-pre-wrap">{pythonCode || currentLesson?.expected_code || '# 拖拽积木到左边生成代码'}</pre>
+          <pre className="whitespace-pre-wrap">{pythonCode || '# 拖拽积木生成代码'}</pre>
         </div>
       )}
     </div>

@@ -10,44 +10,84 @@ declare global {
 
 let isLoading = false;
 let isLoaded = false;
+let loadPromise: Promise<void> | null = null;
+
+function appendScript(src: string) {
+  return new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
+    if (existing) {
+      if (existing.dataset.loaded === 'true') {
+        resolve();
+        return;
+      }
+      if (src.includes('skulpt.min.js') && window.Sk) {
+        existing.dataset.loaded = 'true';
+        resolve();
+        return;
+      }
+      if (src.includes('skulpt-stdlib.js') && window.Sk?.builtinFiles) {
+        existing.dataset.loaded = 'true';
+        resolve();
+        return;
+      }
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = () => {
+      script.dataset.loaded = 'true';
+      resolve();
+    };
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(script);
+  });
+}
 
 export function useSkulpt() {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (window.Sk?.builtinFiles) {
+      isLoaded = true;
+      setLoaded(true);
+      return;
+    }
+
     if (isLoaded) {
       setLoaded(true);
       return;
     }
-    if (isLoading) return;
-    isLoading = true;
+    if (!loadPromise) {
+      isLoading = true;
+      loadPromise = (async () => {
+        await appendScript('/vendor/skulpt/skulpt.min.js');
+        await appendScript('/vendor/skulpt/skulpt-stdlib.js');
+        isLoaded = true;
+        isLoading = false;
+      })();
+    }
 
+    let cancelled = false;
     const loadSkulpt = async () => {
       try {
-        const skulptScript = document.createElement('script');
-        skulptScript.src = '/vendor/skulpt/skulpt.min.js';
-        skulptScript.async = true;
-        skulptScript.onload = () => {
-          const stdlibScript = document.createElement('script');
-          stdlibScript.src = '/vendor/skulpt/skulpt-stdlib.js';
-          stdlibScript.async = true;
-          stdlibScript.onload = () => {
-            isLoaded = true;
-            isLoading = false;
-            setLoaded(true);
-          };
-          stdlibScript.onerror = () => { setError('无法加载Python标准库'); isLoading = false; };
-          document.head.appendChild(stdlibScript);
-        };
-        skulptScript.onerror = () => { setError('无法加载Python引擎'); isLoading = false; };
-        document.head.appendChild(skulptScript);
+        await loadPromise;
+        if (!cancelled) setLoaded(true);
       } catch {
-        setError('加载Python引擎失败');
         isLoading = false;
+        loadPromise = null;
+        if (!cancelled) setError('加载Python引擎失败');
       }
     };
     loadSkulpt();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return { loaded, error };

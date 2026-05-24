@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify:courses": "node scripts/verify-courses.js",
+    "test:e2e": "playwright test",
+    "verify": "npm run verify:courses && npm run lint && npm run build && npx tsc --noEmit && npm run test:e2e"
   },
   "dependencies": {
     "@types/prismjs": "^1.26.6",
@@ -25,6 +28,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

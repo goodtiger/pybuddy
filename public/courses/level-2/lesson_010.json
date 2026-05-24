@@ -1,0 +1,26 @@
+{
+  "id": "lesson_010",
+  "level": 2,
+  "number": 10,
+  "title": "函数画花园",
+  "phase": "block",
+  "objectives": ["组合函数和列表", "重复调用函数创作图案"],
+  "story": "🌼 小海龟要把画正方形函数用三次，种出一排彩色方形花。",
+  "blocks": {
+    "available": ["function"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ndef draw_square(size):\n    for i in range(4):\n        t.forward(size)\n        t.right(90)\ncolors = ['red', 'blue', 'green']\nfor color in colors:\n    t.color(color)\n    draw_square(70)\n    t.penup()\n    t.forward(100)\n    t.pendown()",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现三朵彩色方形花",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["函数负责画一个方形花，列表负责换颜色。", "penup 和 pendown 可以移动位置但不留下线。"],
+  "validation": {
+    "must_contain": ["def", "draw_square", "colors", "for", "penup", "pendown"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_pen_changes": 2, "min_repeats": 1 }
+  }
+}

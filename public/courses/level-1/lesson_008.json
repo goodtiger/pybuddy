@@ -20,6 +20,7 @@
   "validation": {
     "must_contain": ["color", "forward"],
     "run_test": true,
-    "visual_check": "turtle_canvas"
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
   }
 }

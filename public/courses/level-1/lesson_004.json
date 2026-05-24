@@ -18,8 +18,9 @@
   },
   "hints": ["试试把颜色改成'blue'或'green'！", "import就像从工具箱里拿出turtle工具 🧰"],
   "validation": {
-    "must_contain": ["import turtle"],
+    "must_contain": ["import turtle", "color"],
     "run_test": true,
-    "visual_check": "turtle_canvas"
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1 }
   }
 }

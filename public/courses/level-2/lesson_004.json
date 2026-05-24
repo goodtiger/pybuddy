@@ -1,0 +1,26 @@
+{
+  "id": "lesson_004",
+  "level": 2,
+  "number": 4,
+  "title": "颜色清单",
+  "phase": "block",
+  "objectives": ["认识列表 list", "用索引和 len() 读取列表"],
+  "story": "📋 小海龟把喜欢的颜色放进一张清单，要先读出第一种颜色，再数一共有几种。",
+  "blocks": {
+    "available": ["list"],
+    "locked": []
+  },
+  "expected_code": "colors = ['red', 'blue', 'green']\nprint(colors[0])\nprint(len(colors))",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出第一种颜色和颜色数量",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["列表像一排小盒子，colors[0] 是第一个盒子。", "len(colors) 可以数列表里有几个东西。"],
+  "validation": {
+    "must_contain": ["colors", "[0]", "len", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["red", "3"]
+  }
+}

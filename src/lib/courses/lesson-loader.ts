@@ -10,6 +10,10 @@ const LEVEL_META: Record<number, Pick<CourseLevel, 'title' | 'description'>> = {
     title: '积木启蒙岛',
     description: '从第一句 print 开始，解锁变量、海龟画图、循环和第一幅作品。',
   },
+  2: {
+    title: '判断小游戏岛',
+    description: '学习 if/else、比较、随机、列表和函数，把 Python 变成会做决定的小助手。',
+  },
 };
 
 function getLevelDirectory(level: number) {

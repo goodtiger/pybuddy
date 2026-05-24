@@ -56,6 +56,121 @@ const TURTLE_BLOCKS: Record<string, any> = {
       this.setTooltip('让Python帮你做加法');
     },
   },
+  math_subtract_print: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('计算')
+        .appendField(new Blockly.FieldNumber(10, -99, 99, 1), 'A')
+        .appendField('-')
+        .appendField(new Blockly.FieldNumber(4, -99, 99, 1), 'B');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(35);
+      this.setTooltip('让Python帮你做减法');
+    },
+  },
+  math_multiply_print: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('计算')
+        .appendField(new Blockly.FieldNumber(3, -99, 99, 1), 'A')
+        .appendField('×')
+        .appendField(new Blockly.FieldNumber(5, -99, 99, 1), 'B');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(35);
+      this.setTooltip('让Python帮你做乘法');
+    },
+  },
+  compare_score_print: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('分数')
+        .appendField(new Blockly.FieldNumber(8, 0, 100, 1), 'SCORE')
+        .appendField('至少')
+        .appendField(new Blockly.FieldNumber(6, 0, 100, 1), 'TARGET')
+        .appendField('就说通过');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(20);
+      this.setTooltip('用比较和 if 判断分数是否达到目标');
+    },
+  },
+  if_else_print: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('如果')
+        .appendField(new Blockly.FieldTextInput('天气'), 'NAME')
+        .appendField('是')
+        .appendField(new Blockly.FieldTextInput('晴天'), 'VALUE');
+      this.appendDummyInput()
+        .appendField('就说')
+        .appendField(new Blockly.FieldTextInput('去画太阳'), 'YES');
+      this.appendDummyInput()
+        .appendField('否则说')
+        .appendField(new Blockly.FieldTextInput('画彩虹'), 'NO');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(20);
+      this.setTooltip('让 Python 根据条件选择不同输出');
+    },
+  },
+  random_color_turtle: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput().appendField('随机选颜色画一条线');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(300);
+      this.setTooltip('从颜色列表随机挑一个颜色，再让小海龟画线');
+    },
+  },
+  color_list_print: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput().appendField('打印颜色清单');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(300);
+      this.setTooltip('列表可以保存多个颜色');
+    },
+  },
+  list_loop_turtle: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput().appendField('用颜色列表画彩色折线');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(300);
+      this.setTooltip('for 循环可以逐个使用列表里的颜色');
+    },
+  },
+  define_square_function: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('定义画正方形函数，边长')
+        .appendField(new Blockly.FieldNumber(80, 20, 220, 10), 'SIZE');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(290);
+      this.setTooltip('函数可以把一组动作打包成新魔法');
+    },
+  },
+  call_square_function: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput().appendField('调用画正方形函数');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(290);
+      this.setTooltip('调用函数，执行打包好的动作');
+    },
+  },
+  function_pattern_project: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput().appendField('函数画三朵方形花');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(290);
+      this.setTooltip('综合使用函数、循环、颜色和移动');
+    },
+  },
   repeat_square: {
     init(this: Blockly.Block) {
       this.appendDummyInput()
@@ -87,6 +202,20 @@ const TURTLE_BLOCKS: Record<string, any> = {
       this.setNextStatement(true, null);
       this.setColour(160);
       this.setTooltip('让小海龟向前走指定的步数');
+    },
+  },
+  turtle_forward_grow: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('每圈多走')
+        .appendField(new Blockly.FieldNumber(20, 0, 300, 1), 'START')
+        .appendField('+ 第几圈 ×')
+        .appendField(new Blockly.FieldNumber(8, 1, 50, 1), 'STEP')
+        .appendField('步');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(160);
+      this.setTooltip('在循环里使用，让小海龟每次走得更远');
     },
   },
   turtle_backward: {

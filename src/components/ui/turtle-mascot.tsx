@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface TurtleMascotProps {
   expression?: 'happy' | 'confused' | 'celebrating' | 'running' | 'default';
@@ -21,6 +22,16 @@ const imageMap: Record<string, string> = {
 export function TurtleMascot({ expression = 'happy', size = 'lg', className = '', animate = true }: TurtleMascotProps) {
   const pixelSize = sizeMap[size];
   const src = imageMap[expression] || imageMap.default;
+  const image = (
+    <Image
+      src={src}
+      alt="turtle mascot"
+      width={pixelSize}
+      height={pixelSize}
+      className="object-contain turtle-mascot-enhanced"
+      priority={size === 'xl'}
+    />
+  );
 
   return (
     <div className={`relative ${className}`}>
@@ -29,12 +40,11 @@ export function TurtleMascot({ expression = 'happy', size = 'lg', className = ''
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <img src={src} alt="turtle mascot" width={pixelSize} height={pixelSize} className="object-contain turtle-mascot-enhanced" />
+          {image}
         </motion.div>
       ) : (
-        <img src={src} alt="turtle mascot" width={pixelSize} height={pixelSize} className="object-contain turtle-mascot-enhanced" />
+        image
       )}
     </div>
   );
 }
-

@@ -1,0 +1,26 @@
+{
+  "id": "lesson_008",
+  "level": 2,
+  "number": 8,
+  "title": "随机分数挑战",
+  "phase": "block",
+  "objectives": ["用 random 生成变化", "用 if 判断随机结果"],
+  "story": "🎮 小海龟的小游戏会随机给分，达到 6 分就通过挑战。",
+  "blocks": {
+    "available": ["condition"],
+    "locked": []
+  },
+  "expected_code": "score = 8\nif score >= 6:\n    print('挑战成功')\nelse:\n    print('再试一次')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出：挑战成功",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["先用固定分数练 if，再把数字改成不同分数观察结果。", "条件成立时执行 if 下面缩进的代码。"],
+  "validation": {
+    "must_contain": ["score", "if", ">=", "else", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["成功"]
+  }
+}

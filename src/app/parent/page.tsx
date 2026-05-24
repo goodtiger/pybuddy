@@ -6,19 +6,32 @@ import { MascotAvatar } from '@/components/ui/mascot-avatar';
 import { ProgressBar } from '@/components/ui/progress-bar';
 import { Button } from '@/components/ui/button';
 import { getProjectShareUrl } from '@/lib/projects/share-url';
+import { TOTAL_LESSON_COUNT } from '@/lib/courses/course-constants';
 import { useParentSettingsStore } from '@/store/parent-settings-store';
 import { useProgressStore } from '@/store/progress-store';
 import { useProjectStore } from '@/store/project-store';
+import { useUserStore } from '@/store/user-store';
 
-const SKILLS = [
-  { name: '序列', value: 86, color: 'bg-primary' },
-  { name: '变量', value: 54, color: 'bg-secondary' },
-  { name: '循环', value: 38, color: 'bg-accent' },
-  { name: '调试', value: 42, color: 'bg-error' },
+const SKILL_MILESTONES = [
+  { name: '序列', startLesson: 1, completeLesson: 5, color: 'bg-primary' },
+  { name: '变量', startLesson: 2, completeLesson: 2, color: 'bg-secondary' },
+  { name: '海龟绘图', startLesson: 4, completeLesson: 8, color: 'bg-accent' },
+  { name: '循环', startLesson: 7, completeLesson: 14, color: 'bg-error' },
+];
+
+const LEARNED_MILESTONES = [
+  { lesson: 1, text: '用 print 输出文字' },
+  { lesson: 2, text: '用变量保存名字' },
+  { lesson: 4, text: '导入 turtle 并设置画笔' },
+  { lesson: 5, text: '用 turtle 画线条' },
+  { lesson: 7, text: '通过循环减少重复代码' },
+  { lesson: 12, text: '用 circle 画圆形' },
+  { lesson: 15, text: '完成第一幅 Python 作品' },
 ];
 
 export default function ParentDashboardPage() {
   const { completedLessons, totalStars, streakDays } = useProgressStore();
+  const { nickname, users } = useUserStore();
   const {
     dailyTimeLimit,
     weeklyReportEnabled,
@@ -30,7 +43,17 @@ export default function ParentDashboardPage() {
     setSubscription,
   } = useParentSettingsStore();
   const { projects, toggleShareApproval } = useProjectStore();
-  const minutes = Math.max(8, completedLessons.length * 6);
+  const completedCount = completedLessons.length;
+  const minutes = completedCount * 6;
+  const learnedItems = LEARNED_MILESTONES.filter((item) => completedCount >= item.lesson);
+  const skills = SKILL_MILESTONES.map((skill) => {
+    const span = Math.max(1, skill.completeLesson - skill.startLesson + 1);
+    const completedInSkill = Math.min(span, Math.max(0, completedCount - skill.startLesson + 1));
+    return {
+      ...skill,
+      value: Math.round((completedInSkill / span) * 100),
+    };
+  });
   const copyShareUrl = async (shareId: string) => {
     const url = getProjectShareUrl(shareId);
     await navigator.clipboard?.writeText(url);
@@ -41,20 +64,22 @@ export default function ParentDashboardPage() {
       <header className="sticky top-0 z-20 flex items-center justify-between border-b border-primary-container/60 bg-surface/95 p-kid-sm shadow-kid backdrop-blur">
         <button onClick={() => window.location.href = '/map'} className="flex items-center gap-2">
           <MascotAvatar expression="happy" size="sm" />
-          <span className="text-kid-lg font-heading font-bold text-primary">PyBuddy 家长面板</span>
+          <span className="text-kid-lg font-heading font-bold text-primary">PyBuddy 家长面板 · {nickname}</span>
         </button>
         <div className="flex gap-2">
           <Button variant="ghost" onClick={() => window.location.href = '/settings'}>设置</Button>
-          <Button variant="ghost" onClick={() => window.location.href = '/register'}>家庭档案</Button>
+          <Button variant="ghost" onClick={() => window.location.href = '/register'}>
+            {users.length > 1 ? '切换学员' : '家庭档案'}
+          </Button>
           <Badge variant="star">⭐ {totalStars}</Badge>
-          <Badge variant="streak">🔥 {streakDays || 3}</Badge>
+          <Badge variant="streak">🔥 {streakDays}</Badge>
         </div>
       </header>
 
       <main className="mx-auto grid max-w-7xl gap-kid-sm p-kid-sm lg:grid-cols-[1.1fr_0.9fr] lg:p-kid-md">
         <Card className="border-2 border-primary-container p-kid-md">
           <p className="text-kid-sm font-heading font-bold text-primary">本周学习总览</p>
-          <h1 className="mt-2 text-kid-xl font-heading font-bold text-gray-950">小程序员正在稳步前进</h1>
+          <h1 className="mt-2 text-kid-xl font-heading font-bold text-gray-950">{nickname} 正在稳步前进</h1>
           <div className="mt-kid-md grid gap-3 sm:grid-cols-3">
             <div className="rounded-kid-lg bg-primary-container p-kid-sm">
               <p className="text-kid-sm font-heading font-bold text-primary">学习时间</p>
@@ -62,7 +87,9 @@ export default function ParentDashboardPage() {
             </div>
             <div className="rounded-kid-lg bg-green-100 p-kid-sm">
               <p className="text-kid-sm font-heading font-bold text-secondary">完成课程</p>
-              <p className="mt-2 text-kid-xl font-heading font-bold">{completedLessons.length}/15</p>
+              <p className="mt-2 text-kid-xl font-heading font-bold">
+                {completedCount}/{TOTAL_LESSON_COUNT}
+              </p>
             </div>
             <div className="rounded-kid-lg bg-yellow-100 p-kid-sm">
               <p className="text-kid-sm font-heading font-bold text-yellow-700">获得星星</p>
@@ -71,28 +98,34 @@ export default function ParentDashboardPage() {
           </div>
           <div className="mt-kid-md">
             <div className="mb-2 flex justify-between text-kid-sm font-heading font-bold text-gray-500">
-              <span>Level 1 进度</span>
-              <span>{completedLessons.length}/15</span>
+              <span>总课程进度</span>
+              <span>{completedCount}/{TOTAL_LESSON_COUNT}</span>
             </div>
-            <ProgressBar value={completedLessons.length} max={15} />
+            <ProgressBar value={completedCount} max={TOTAL_LESSON_COUNT} />
           </div>
         </Card>
 
         <Card className="border-2 border-accent/70 bg-accent/20 p-kid-md">
           <p className="text-kid-sm font-heading font-bold text-gray-600">本周学会了</p>
           <div className="mt-4 space-y-3">
-            {['用 print 输出文字', '用变量保存名字', '用 turtle 画线条', '通过循环减少重复代码'].map((item) => (
-              <div key={item} className="rounded-kid-md bg-surface p-4 text-kid-base font-heading font-bold shadow-kid">
-                ✓ {item}
+            {learnedItems.length === 0 ? (
+              <div className="rounded-kid-md bg-surface p-4 text-kid-base font-heading font-bold text-gray-600 shadow-kid">
+                完成第一课后，这里会自动记录孩子学会的内容。
               </div>
-            ))}
+            ) : (
+              learnedItems.map((item) => (
+                <div key={item.text} className="rounded-kid-md bg-surface p-4 text-kid-base font-heading font-bold shadow-kid">
+                  ✓ {item.text}
+                </div>
+              ))
+            )}
           </div>
         </Card>
 
         <Card className="p-kid-md">
           <p className="text-kid-sm font-heading font-bold text-primary">技能掌握</p>
           <div className="mt-4 space-y-4">
-            {SKILLS.map((skill) => (
+            {skills.map((skill) => (
               <div key={skill.name}>
                 <div className="mb-2 flex justify-between text-kid-sm font-heading font-bold">
                   <span>{skill.name}</span>
@@ -138,7 +171,9 @@ export default function ParentDashboardPage() {
             <p className="text-kid-base font-heading font-bold text-secondary">
               {subscription === 'free' ? '免费版' : subscription === 'family' ? '家庭版' : '教育版'}
             </p>
-            <p className="mt-1 text-kid-sm text-gray-600">前15课、基础AI导师、Turtle画布已开放。</p>
+            <p className="mt-1 text-kid-sm text-gray-600">
+              前{TOTAL_LESSON_COUNT}课、基础AI导师、Turtle画布已开放。
+            </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {(['free', 'family', 'education'] as const).map((plan) => (
                 <button

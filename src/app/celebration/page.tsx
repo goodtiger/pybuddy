@@ -4,8 +4,9 @@ import { useRouter } from 'next/navigation';
 import { useProgressStore } from '@/store/progress-store';
 import { motion } from 'framer-motion';
 import { TurtleMascot } from '@/components/ui/turtle-mascot';
-import { StarIcon, ShareIcon, CheckIcon, TrophyIcon, MapPinIcon, ChartIcon } from '@/components/icons';
+import { StarIcon, CheckIcon } from '@/components/icons';
 import { useEffect, useRef } from 'react';
+import { LEVEL_1_LESSON_COUNT } from '@/lib/courses/course-constants';
 
 const CONFETTI_COLORS = ['#FFEB3B', '#4CAF50', '#3B82F6', '#EF4444', '#F59E0B', '#E91E63'];
 
@@ -88,9 +89,9 @@ function Confetti() {
 
 export default function CelebrationPage() {
   const router = useRouter();
-  const { currentLesson } = useProgressStore();
+  const { currentLesson, streakDays, totalStars } = useProgressStore();
   const lessonNum = currentLesson || 1;
-  const hasNext = lessonNum < 15;
+  const hasNext = lessonNum < LEVEL_1_LESSON_COUNT;
   const nextLessonId = `lesson_${String(lessonNum + 1).padStart(3, '0')}`;
 
   const handleNext = () => {
@@ -133,21 +134,21 @@ export default function CelebrationPage() {
           {/* Congratulatory text */}
           <h1 className="text-[24px] font-quicksand font-bold text-[#1F2937] mb-2">太棒了，代码大师！</h1>
           <p className="text-[14px] font-quicksand text-[#6B7280] mb-6">
-            你成功解锁了{"\""}变量{"\""}的神秘力量，继续向前吧！
+            你又完成了一节 Python 课。回看作品、继续下一课，或者去地图看看进度。
           </p>
 
           {/* Reward badges */}
           <div className="flex justify-center gap-3 mb-8">
             <span className="rounded-full bg-[#DCFCE7] px-3 py-1.5 text-[13px] font-quicksand font-bold text-[#16A34A] flex items-center gap-1">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-              +10 XP
+              +3 星星
             </span>
             <span className="rounded-full bg-[#FEF3C7] px-3 py-1.5 text-[13px] font-quicksand font-bold text-[#D97706] flex items-center gap-1">
-              <StarIcon className="w-4 h-4" filled /> +1 星星
+              <StarIcon className="w-4 h-4" filled /> 共 {totalStars} 星
             </span>
             <span className="rounded-full bg-[#DBEAFE] px-3 py-1.5 text-[13px] font-quicksand font-bold text-[#2563EB] flex items-center gap-1">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
-              3 天
+              {streakDays} 天
             </span>
           </div>
 
@@ -192,8 +193,10 @@ export default function CelebrationPage() {
         {/* Avatar and stats */}
         <div className="flex flex-col items-center mt-8 mb-6">
           <div className="w-[80px] h-[80px] rounded-full bg-gradient-to-br from-amber-300 to-amber-500 flex items-center justify-center text-[48px] mb-3">😊</div>
-          <p className="text-[16px] font-quicksand font-bold text-[#1F2937]">{lessonNum}/110 Lessons</p>
-          <p className="text-[14px] text-[#6B7280] font-quicksand mt-1">🔥 3 Day Streak</p>
+          <p className="text-[16px] font-quicksand font-bold text-[#1F2937]">
+            {lessonNum}/{LEVEL_1_LESSON_COUNT} 课程
+          </p>
+          <p className="text-[14px] text-[#6B7280] font-quicksand mt-1">🔥 连续 {streakDays} 天</p>
         </div>
 
         {/* Navigation */}
@@ -216,7 +219,7 @@ export default function CelebrationPage() {
           onClick={() => window.location.href = '/map'}
           className="mx-4 mb-6 rounded-full bg-[#0B6E3A] py-3 text-[15px] font-quicksand font-bold text-white shadow-[0_2px_8px_rgba(11,110,58,0.3)]"
         >
-          Continue Learning
+          继续学习
         </button>
       </div>
     </div>

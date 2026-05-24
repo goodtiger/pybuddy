@@ -1,0 +1,26 @@
+{
+  "id": "lesson_012",
+  "level": 2,
+  "number": 12,
+  "title": "Level 2 创作项目",
+  "phase": "block",
+  "objectives": ["综合使用条件、列表和函数", "完成第二阶段作品"],
+  "story": "🏝️ 你已经会让 Python 做决定、抽随机颜色、读列表和调用函数了。做一个彩色图案项目吧！",
+  "blocks": {
+    "available": ["function"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ndef draw_square(size):\n    for i in range(4):\n        t.forward(size)\n        t.right(90)\ncolors = ['red', 'blue', 'green']\nfor color in colors:\n    t.color(color)\n    draw_square(80)\n    t.penup()\n    t.forward(110)\n    t.pendown()",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现综合创作图案",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["先用函数画一个图案，再用列表换颜色。", "综合项目可以改颜色和大小，只要能运行并包含核心结构。"],
+  "validation": {
+    "must_contain": ["def", "draw_square", "colors", "for", "color", "penup", "pendown"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1, "min_pen_changes": 2, "min_repeats": 1 }
+  }
+}

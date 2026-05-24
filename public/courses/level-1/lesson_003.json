@@ -12,13 +12,13 @@
   },
   "expected_code": "print(2 + 3)\nprint(10 - 4)\nprint(3 * 5)",
   "visual": {
-    "type": "turtle_canvas",
+    "type": "text_output",
     "expected_result": "屏幕上显示计算结果：5, 6, 15",
     "config": { "canvas_size": [400, 300] }
   },
   "hints": ["试试其他运算，比如 100 + 200！", "Python会帮你算，你只需要告诉它算什么 🔢"],
   "validation": {
-    "must_contain": ["print"],
+    "must_contain": ["+", "-", "*", "print"],
     "run_test": true,
     "visual_check": "text_output"
   }

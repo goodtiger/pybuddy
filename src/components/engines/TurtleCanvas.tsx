@@ -6,24 +6,20 @@ import { useLessonStore } from '@/store/lesson-store';
 import { parseFriendlyError } from '@/lib/runtime/error-parser';
 
 export function TurtleCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const isRunning = useLessonStore((s) => s.isRunning);
   const hasError = useLessonStore((s) => s.hasError);
   const lastResult = useLessonStore((s) => s.lastResult);
 
   useEffect(() => {
-    if (canvasRef.current) {
-      skulptRunner.setCanvas(canvasRef.current);
+    if (targetRef.current) {
+      skulptRunner.setTurtleTarget(targetRef.current);
     }
   }, []);
 
   const clearCanvas = () => {
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d');
-      if (ctx) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-      }
+    if (targetRef.current) {
+      targetRef.current.replaceChildren();
     }
   };
 
@@ -44,12 +40,7 @@ export function TurtleCanvas() {
           backgroundSize: '24px 24px',
         }}
       >
-        <canvas
-          ref={canvasRef}
-          width={900}
-          height={560}
-          className="w-full h-full"
-        />
+        <div ref={targetRef} className="h-full w-full" />
         {isRunning && (
           <div className="absolute inset-0 bg-white/85 flex items-center justify-center">
             <span className="text-kid-lg">🐢 Python正在跑步...</span>

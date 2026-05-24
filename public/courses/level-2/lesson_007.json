@@ -1,0 +1,26 @@
+{
+  "id": "lesson_007",
+  "level": 2,
+  "number": 7,
+  "title": "调用函数",
+  "phase": "block",
+  "objectives": ["区分定义函数和调用函数", "运行 draw_square(size)"],
+  "story": "📞 只定义魔法还不够，小海龟需要听到调用口令才会开始画。",
+  "blocks": {
+    "available": ["turtle_import", "function"],
+    "locked": []
+  },
+  "expected_code": "import turtle\nt = turtle.Turtle()\ndef draw_square(size):\n    for i in range(4):\n        t.forward(size)\n        t.right(90)\nsize = 100\ndraw_square(size)",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个较大的正方形",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["函数定义像写菜谱，函数调用才是真的开始做菜。", "draw_square(size) 里的 size 会决定边长。"],
+  "validation": {
+    "must_contain": ["def", "draw_square", "draw_square(size)", "forward", "right"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_movement": 1, "min_turns": 1, "min_repeats": 1 }
+  }
+}

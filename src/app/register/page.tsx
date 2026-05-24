@@ -1,6 +1,7 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { MascotAvatar } from '@/components/ui/mascot-avatar';
@@ -13,18 +14,30 @@ const AVATARS = [
   { id: 4, label: '画笔', icon: '🎨', color: 'bg-pink-100 text-pink-600' },
 ];
 
-export default function RegisterPage() {
-  const { nickname, avatarId, childAge, parentEmail, registerFamily } = useUserStore();
-  const [form, setForm] = useState({
-    nickname,
-    avatarId,
-    childAge,
+function createEmptyProfileForm(parentEmail = '') {
+  return {
+    nickname: '',
+    avatarId: 1,
+    childAge: 8,
     parentEmail,
-  });
+  };
+}
+
+export default function RegisterPage() {
+  const router = useRouter();
+  const { users, currentUserId, parentEmail, registerFamily, switchUser } = useUserStore();
+  const [form, setForm] = useState(() => createEmptyProfileForm(parentEmail));
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (!parentEmail || form.parentEmail) return;
+    setForm((current) => ({ ...current, parentEmail }));
+  }, [form.parentEmail, parentEmail]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError('');
+
     if (!form.nickname.trim()) {
       setError('请给小程序员起一个昵称');
       return;
@@ -36,23 +49,28 @@ export default function RegisterPage() {
     }
 
     registerFamily(form);
-    window.location.href = '/map';
+    router.push('/map');
+  };
+
+  const handleSwitchUser = (userId: string) => {
+    switchUser(userId);
+    router.push('/map');
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-container via-background to-green-50 p-kid-sm lg:p-kid-md">
       <div className="mx-auto grid min-h-[calc(100vh-48px)] max-w-6xl items-center gap-kid-md lg:grid-cols-[0.9fr_1.1fr]">
         <section>
-          <button onClick={() => window.location.href = '/map'} className="mb-kid-sm flex items-center gap-2 text-kid-base font-heading font-bold text-primary">
+          <button onClick={() => router.push('/map')} className="mb-kid-sm flex items-center gap-2 text-kid-base font-heading font-bold text-primary">
             <MascotAvatar expression="happy" size="sm" />
             返回 PyBuddy
           </button>
           <div className="rounded-[32px] border-2 border-primary-container bg-white p-kid-md shadow-kid-lg">
             <div className="rounded-kid-lg bg-[#e9f8ff] p-kid-md text-center">
               <MascotAvatar expression="celebrating" size="xl" />
-              <h1 className="mt-4 text-kid-xl font-heading font-bold text-primary">创建家庭学习档案</h1>
+              <h1 className="mt-4 text-kid-xl font-heading font-bold text-primary">创建学习档案</h1>
               <p className="mt-2 text-kid-base text-gray-600">
-                保存孩子的课程进度、作品墙和家长报告设置。当前版本先在本机安全保存。
+                每个孩子都有独立的课程进度、星星和作品墙。当前版本先在本机保存。
               </p>
             </div>
             <div className="mt-kid-sm grid grid-cols-2 gap-3">
@@ -68,8 +86,42 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit} className="space-y-kid-sm">
             <div>
               <p className="text-kid-sm font-heading font-bold text-primary">第一步</p>
-              <h2 className="text-kid-xl font-heading font-bold text-gray-950">告诉小海龟怎么称呼你</h2>
+              <h2 className="text-kid-xl font-heading font-bold text-gray-950">新增一个小程序员</h2>
             </div>
+
+            {users.length > 0 && (
+              <div className="rounded-kid-lg border-2 border-primary-container bg-primary-container/40 p-kid-sm">
+                <p className="text-kid-sm font-heading font-bold text-primary">已有学员</p>
+                <div className="mt-3 grid gap-2">
+                  {users.map((user) => {
+                    const avatar = AVATARS.find((item) => item.id === user.avatarId) || AVATARS[0];
+                    return (
+                      <button
+                        key={user.id}
+                        type="button"
+                        onClick={() => handleSwitchUser(user.id)}
+                        className={`flex items-center justify-between rounded-kid-md border-2 bg-white px-3 py-2 text-left shadow-kid ${
+                          user.id === currentUserId ? 'border-primary' : 'border-transparent'
+                        }`}
+                      >
+                        <span className="flex items-center gap-3">
+                          <span className={`flex h-10 w-10 items-center justify-center rounded-kid-md text-2xl ${avatar.color}`}>
+                            {avatar.icon}
+                          </span>
+                          <span>
+                            <span className="block text-kid-base font-heading font-bold text-gray-900">{user.nickname}</span>
+                            <span className="block text-kid-sm text-gray-500">{user.childAge} 岁</span>
+                          </span>
+                        </span>
+                        <span className="text-kid-sm font-heading font-bold text-primary">
+                          {user.id === currentUserId ? '当前' : '进入'}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <label className="block">
               <span className="text-kid-sm font-heading font-bold text-gray-600">孩子昵称</span>
@@ -135,9 +187,9 @@ export default function RegisterPage() {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button type="submit" variant="secondary" size="lg" className="flex-1">
-                保存并开始
+                创建并开始
               </Button>
-              <Button type="button" variant="ghost" size="lg" onClick={() => window.location.href = '/map'}>
+              <Button type="button" variant="ghost" size="lg" onClick={() => router.push('/map')}>
                 稍后再说
               </Button>
             </div>
