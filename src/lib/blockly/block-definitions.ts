@@ -291,6 +291,111 @@ const TURTLE_BLOCKS: Record<string, any> = {
       this.setColour(160);
     },
   },
+
+  while_condition: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('当计数小于等于')
+        .appendField(new Blockly.FieldNumber(5, 1, 20, 1), 'LIMIT');
+      this.appendDummyInput().appendField('时重复');
+      this.appendStatementInput('DO').appendField('每次做');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(120);
+      this.setTooltip('while 会在条件成立时一直重复');
+    },
+  },
+
+  string_input: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('询问')
+        .appendField(new Blockly.FieldTextInput('请输入你的名字：'), 'PROMPT')
+        .appendField('并保存为 name');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(260);
+      this.setTooltip('使用 input() 向用户提问');
+    },
+  },
+
+  string_upper: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('把')
+        .appendField(new Blockly.FieldTextInput('python'), 'TEXT')
+        .appendField('变成大写');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(210);
+      this.setTooltip('upper() 把英文变成大写');
+    },
+  },
+
+  string_lower: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('把')
+        .appendField(new Blockly.FieldTextInput('MAGIC'), 'TEXT')
+        .appendField('变成小写');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(210);
+      this.setTooltip('lower() 把英文变成小写');
+    },
+  },
+
+  dict_create: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput().appendField("创建宠物档案 pet = {'name': '豆豆', 'kind': '猫'}");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(45);
+      this.setTooltip('创建字典保存信息');
+    },
+  },
+
+  dict_get: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('读取 pet 的')
+        .appendField(new Blockly.FieldDropdown([
+          ['名字', 'name'],
+          ['种类', 'kind'],
+          ['年龄', 'age'],
+        ]), 'KEY');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(45);
+      this.setTooltip('用 key 读取字典值');
+    },
+  },
+
+  dict_set: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('把 pet 的年龄改成')
+        .appendField(new Blockly.FieldNumber(3, 0, 30, 1), 'AGE');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(45);
+      this.setTooltip('修改字典里的值');
+    },
+  },
+
+  fstring_print: {
+    init(this: Blockly.Block) {
+      this.appendDummyInput()
+        .appendField('用 f-string 介绍')
+        .appendField(new Blockly.FieldTextInput('小雨'), 'NAME')
+        .appendField('学会')
+        .appendField(new Blockly.FieldTextInput('循环魔法'), 'POWER');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(210);
+      this.setTooltip('f-string 把变量放进一句话');
+    },
+  },
 };
 
 export function defineTurtleBlocks() {

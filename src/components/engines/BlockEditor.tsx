@@ -34,6 +34,14 @@ const ALL_BLOCKS = [
   { kind: 'block', type: 'turtle_pen_up' },
   { kind: 'block', type: 'turtle_pen_down' },
   { kind: 'block', type: 'turtle_circle' },
+  { kind: 'block', type: 'while_condition' },
+  { kind: 'block', type: 'string_input' },
+  { kind: 'block', type: 'string_upper' },
+  { kind: 'block', type: 'string_lower' },
+  { kind: 'block', type: 'dict_create' },
+  { kind: 'block', type: 'dict_get' },
+  { kind: 'block', type: 'dict_set' },
+  { kind: 'block', type: 'fstring_print' },
 ];
 
 const BLOCK_ALIASES: Record<string, string[]> = {
@@ -44,6 +52,11 @@ const BLOCK_ALIASES: Record<string, string[]> = {
   random: ['random_color_turtle'],
   list: ['color_list_print', 'list_loop_turtle'],
   function: ['define_square_function', 'call_square_function', 'function_pattern_project'],
+  while: ['while_condition'],
+  input: ['string_input'],
+  string: ['string_input', 'string_upper', 'string_lower'],
+  dict: ['dict_create', 'dict_get', 'dict_set'],
+  fstring: ['fstring_print'],
 };
 
 export function BlockEditor({ onCodeChange, showPreview = true }: { onCodeChange?: (code: string) => void; showPreview?: boolean }) {

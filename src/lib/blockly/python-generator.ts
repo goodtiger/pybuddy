@@ -91,6 +91,46 @@ export function setupPythonGenerator() {
     const radius = block.getFieldValue('RADIUS');
     return `t.circle(${radius})\n`;
   };
+
+  pythonGenerator.forBlock['while_condition'] = (block, generator) => {
+    const limit = block.getFieldValue('LIMIT');
+    const branch = generator.statementToCode(block, 'DO') || '  print(count)\n';
+    return `count = 1\nwhile count <= ${limit}:\n${branch}  count = count + 1\n`;
+  };
+
+  pythonGenerator.forBlock['string_input'] = (block) => {
+    const prompt = String(block.getFieldValue('PROMPT') || '请输入你的名字：').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return `name = input('${prompt}')\nprint('欢迎来到魔法岛，' + name)\n`;
+  };
+
+  pythonGenerator.forBlock['string_upper'] = (block) => {
+    const text = String(block.getFieldValue('TEXT') || 'python').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return `word = '${text}'\nprint(word.upper())\n`;
+  };
+
+  pythonGenerator.forBlock['string_lower'] = (block) => {
+    const text = String(block.getFieldValue('TEXT') || 'MAGIC').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return `word = '${text}'\nprint(word.lower())\n`;
+  };
+
+  pythonGenerator.forBlock['dict_create'] = () =>
+    "pet = {'name': '豆豆', 'kind': '猫'}\nprint(pet)\n";
+
+  pythonGenerator.forBlock['dict_get'] = (block) => {
+    const key = block.getFieldValue('KEY');
+    return `print(pet['${key}'])\n`;
+  };
+
+  pythonGenerator.forBlock['dict_set'] = (block) => {
+    const age = block.getFieldValue('AGE');
+    return `pet['age'] = ${age}\nprint(pet)\n`;
+  };
+
+  pythonGenerator.forBlock['fstring_print'] = (block) => {
+    const name = String(block.getFieldValue('NAME') || '小雨').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const power = String(block.getFieldValue('POWER') || '循环魔法').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return `name = '${name}'\npower = '${power}'\nprint(f'{name} 学会了 {power}')\n`;
+  };
 }
 
 export { pythonGenerator };
