@@ -9,7 +9,7 @@ import { ConceptIntroCard } from '@/components/learning/ConceptIntroCard';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { MascotAvatar } from '@/components/ui/mascot-avatar';
-import { askTutor } from '@/lib/ai-tutor/client';
+import { askTutor, askTutorStream } from '@/lib/ai-tutor/client';
 import { playError, playSuccess } from '@/lib/audio/sound-effects';
 import { validateLessonRun, type LessonValidationResult } from '@/lib/courses/lesson-validation';
 import { getLessonCountForLevel, getProgressLessonKey } from '@/lib/courses/course-constants';
@@ -93,6 +93,7 @@ export function LearnLessonPage({ lessonId, level = 1 }: { lessonId: string; lev
   const [lessonCompleted, setLessonCompleted] = useState(false);
   const [tutorInput, setTutorInput] = useState('');
   const [tutorLoading, setTutorLoading] = useState(false);
+  const [streamingReply, setStreamingReply] = useState('');
   const [savedProjectId, setSavedProjectId] = useState<string | null>(null);
   const [editorResetKey, setEditorResetKey] = useState(0);
 
@@ -174,17 +175,29 @@ export function LearnLessonPage({ lessonId, level = 1 }: { lessonId: string; lev
     const message = tutorInput.trim();
     setTutorInput('');
     setTutorLoading(true);
+    setStreamingReply('');
     addAiMessage({ role: 'user', content: message, timestamp: new Date() });
     decrementAiQuota();
 
-    const reply = await askTutor({
-      message,
-      lesson: currentLesson,
-      currentCode: pythonCode,
-      currentError: lastResult?.error,
-    });
+    const recentMessages = aiMessages.slice(-5);
 
-    addAiMessage({ role: 'assistant', content: reply, timestamp: new Date() });
+    let accumulated = '';
+    await askTutorStream(
+      {
+        message,
+        lesson: currentLesson,
+        currentCode: pythonCode,
+        currentError: lastResult?.error,
+        history: recentMessages.map((msg) => ({ role: msg.role, content: msg.content })),
+      },
+      (chunk) => {
+        accumulated += chunk;
+        setStreamingReply(accumulated);
+      }
+    );
+
+    addAiMessage({ role: 'assistant', content: accumulated, timestamp: new Date() });
+    setStreamingReply('');
     setTutorLoading(false);
   };
 
@@ -462,7 +475,7 @@ export function LearnLessonPage({ lessonId, level = 1 }: { lessonId: string; lev
             </div>
             <div className="mt-3 flex max-h-56 flex-1 flex-col gap-2 overflow-auto rounded-[12px] bg-[#F9FAFB] p-3">
               {aiMessages.length === 0 ? (
-                <p className="text-[13px] text-[#6B7280]">卡住时可以问一句，例如“为什么没有画出来？”</p>
+                <p className="text-[13px] text-[#6B7280]">卡住时可以问一句，例如&apos;为什么没有画出来？&apos;</p>
               ) : (
                 aiMessages.map((message, index) => (
                   <div
@@ -477,7 +490,13 @@ export function LearnLessonPage({ lessonId, level = 1 }: { lessonId: string; lev
                   </div>
                 ))
               )}
-              {tutorLoading && <p className="text-[13px] text-[#6B7280]">小老师正在想...</p>}
+              {streamingReply && (
+                <div className="self-start rounded-[12px] bg-white px-3 py-2 text-[13px] text-[#374151] shadow-sm">
+                  {streamingReply}
+                  <span className="ml-0.5 inline-block animate-pulse text-[#3B82F6]">▌</span>
+                </div>
+              )}
+              {tutorLoading && !streamingReply && <p className="text-[13px] text-[#6B7280]">小老师正在想...</p>}
             </div>
             <div className="mt-3 flex gap-2">
               <input
