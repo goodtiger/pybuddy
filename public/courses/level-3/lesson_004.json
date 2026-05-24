@@ -1,0 +1,22 @@
+{
+  "id": "lesson_004",
+  "level": 3,
+  "number": 4,
+  "title": "猜数字游戏",
+  "phase": "hybrid",
+  "objectives": ["组合 input、if 和随机数", "把输入转换成整数", "完成第一个交互小游戏"],
+  "story": "魔法岛的宝箱藏着一个 1 到 5 的数字。让 Python 随机选择答案，再让玩家猜一猜。",
+  "blocks": { "available": ["input", "condition", "random", "print"], "locked": [] },
+  "expected_code": "import random\nsecret = random.randint(1, 5)\nguess = int(input('猜一个 1 到 5 的数字：'))\nif guess == secret:\n    print('猜对了，宝箱打开！')\nelse:\n    print('还差一点，答案是')\n    print(secret)",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "玩家输入数字后，程序判断是否猜中",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["random.randint(1, 5) 会随机产生 1 到 5。", "input() 得到的是文字，int() 可以转成数字。", "if 可以判断 guess 是否等于 secret。"],
+  "validation": {
+    "must_contain": ["import random", "random.randint", "input", "int", "if", "==", "else", "print"],
+    "run_test": true,
+    "visual_check": "text_output"
+  }
+}

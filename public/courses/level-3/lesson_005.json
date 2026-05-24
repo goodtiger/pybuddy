@@ -1,0 +1,23 @@
+{
+  "id": "lesson_005",
+  "level": 3,
+  "number": 5,
+  "title": "字符串魔法",
+  "phase": "block",
+  "objectives": ["认识字符串方法", "使用 upper() 变大写", "使用 lower() 变小写"],
+  "story": "魔法图书馆里的咒语有时太小声，有时太大声。用 upper() 和 lower() 调整咒语的声音。",
+  "blocks": { "available": ["string", "print"], "locked": [] },
+  "expected_code": "spell = 'python magic'\nprint(spell.upper())\nshout = 'HELLO MAGIC ISLAND'\nprint(shout.lower())",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "输出大写咒语和小写咒语",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["upper() 会把英文变成大写。", "lower() 会把英文变成小写。", "方法写在字符串变量后面。"],
+  "validation": {
+    "must_contain": ["upper()", "lower()", "print", "spell", "shout"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["PYTHON MAGIC", "hello magic island"]
+  }
+}

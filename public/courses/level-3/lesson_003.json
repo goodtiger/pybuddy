@@ -1,0 +1,23 @@
+{
+  "id": "lesson_003",
+  "level": 3,
+  "number": 3,
+  "title": "用户输入 input()",
+  "phase": "block",
+  "objectives": ["认识 input() 函数", "把用户回答保存到变量", "用 print 输出个性化欢迎语"],
+  "story": "魔法岛守门人想知道你的名字。请让 Python 提问，并用你的名字欢迎你进入魔法岛。",
+  "blocks": { "available": ["input", "print", "variable"], "locked": [] },
+  "expected_code": "name = input('请输入你的名字：')\nprint('欢迎来到魔法岛，' + name)",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "弹出输入框，输入名字后输出欢迎语",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["input() 会等待用户回答。", "回答可以保存到 name 变量里。", "可以用 + 把文字和名字拼起来。"],
+  "validation": {
+    "must_contain": ["input", "name", "print", "欢迎来到魔法岛"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["欢迎来到魔法岛"]
+  }
+}

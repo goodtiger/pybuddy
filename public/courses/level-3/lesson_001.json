@@ -1,0 +1,23 @@
+{
+  "id": "lesson_001",
+  "level": 3,
+  "number": 1,
+  "title": "while 循环入门",
+  "phase": "block",
+  "objectives": ["认识 while 循环", "理解条件成立时会重复执行", "学会让计数变量变化"],
+  "story": "欢迎来到 Python 魔法岛。岛门上写着：只要魔法计数还没有到 5，就继续念咒语。用 while 帮小海龟打开岛门吧。",
+  "blocks": { "available": ["while", "print"], "locked": [] },
+  "expected_code": "count = 1\nwhile count <= 5:\n    print(count)\n    count = count + 1\nprint('魔法岛大门打开了')",
+  "visual": {
+    "type": "text_output",
+    "expected_result": "依次输出 1 到 5，然后输出：魔法岛大门打开了",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["while 后面要跟一个条件。", "如果 count 不增加，while 可能会一直重复。", "循环结束后可以再 print 一句完成提示。"],
+  "validation": {
+    "must_contain": ["while", "count", "<=", "count = count + 1", "print"],
+    "run_test": true,
+    "visual_check": "text_output",
+    "output_contains": ["1", "5", "魔法岛大门打开了"]
+  }
+}

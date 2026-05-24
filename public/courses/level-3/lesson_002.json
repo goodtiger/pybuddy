@@ -1,0 +1,23 @@
+{
+  "id": "lesson_002",
+  "level": 3,
+  "number": 2,
+  "title": "while 画图案",
+  "phase": "block",
+  "objectives": ["用 while 控制 turtle 重复动作", "画出逐渐旋转的线条", "避免无限循环"],
+  "story": "魔法岛上有一座旋转风车。每转一次，小海龟就前进并右转。请用 while 画出风车的骨架。",
+  "blocks": { "available": ["while", "turtle_import", "turtle_forward", "turtle_right", "turtle_color"], "locked": [] },
+  "expected_code": "import turtle\nt = turtle.Turtle()\nt.color('purple')\ncount = 1\nwhile count <= 6:\n    t.forward(80)\n    t.right(60)\n    count = count + 1",
+  "visual": {
+    "type": "turtle_canvas",
+    "expected_result": "画布上出现一个紫色六边形风车图案",
+    "config": { "canvas_size": [400, 300] }
+  },
+  "hints": ["先导入 turtle 并创建 t。", "while 里面放前进和右转。", "每次循环最后让 count 加 1。"],
+  "validation": {
+    "must_contain": ["import turtle", "while", "t.forward", "t.right", "count = count + 1"],
+    "run_test": true,
+    "visual_check": "turtle_canvas",
+    "turtle_actions": { "imported": true, "created": true, "min_colors": 1, "min_movement": 1, "min_turns": 1 }
+  }
+}
