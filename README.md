@@ -252,9 +252,3 @@ npm run start
 ```text
 https://github.com/goodtiger/pybuddy
 ```
-
-当前 Git 提交身份建议使用：
-
-```text
-goodtiger <143107+goodtiger@users.noreply.github.com>
-```
